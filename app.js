@@ -19,12 +19,21 @@ $(document).ready(function () {
         var topic = $(this).attr("data-name");
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=LblY3O4psUAecTqrUYsFv8dMiotbr3Tm&limit=10";
         console.log(queryURL)
+
         $.ajax({
             url: queryURL,
             method: "GET",
         }).then(function (response) {
         console.log(response.data[0].rating);
-        $("body").append("<p>Rating is: "+ response.data[0].rating + "</p>");
+
+        //Create for loop to cycle through each result
+        for (let i = 0; i < response.data.length; i++) {
+            //Add the result rating
+            $("#giphySpace").prepend("<p>Rating is: "+ response.data[i].rating + "</p>");
+            //Add the image
+            $("#giphySpace").prepend("<img src='" + response.data[i].images.downsized.url + "'>");
+        }
+
         });
     }
     //Adding an event listener to the button
