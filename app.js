@@ -23,14 +23,13 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET",
         }).then(function (response) {
-        console.log(response.data)
+        console.log(response.data[0].rating);
+        $("body").append("<p>Rating is: "+ response.data[0].rating + "</p>");
         });
     }
     //Adding an event listener to the button
     $(document).on("click", ".topicButtons", getGif);
 
-    //Create another for loop, create class, grab values to make into images, append to giphy
-    var result = response.data
 
 
 });
