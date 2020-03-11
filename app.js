@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     //creating a button and adding a class for each item in the array
     function makeButtons(buttonArray) {
+        $("#buttonSpace").empty();
         for (let i = 0; i < buttonArray.length; i++) {
             var differentButton = $("<button class='btn-outline-success m-3'>");
             differentButton.addClass("topicButtons");
@@ -24,15 +25,15 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET",
         }).then(function (response) {
-        console.log(response.data[0].rating);
+            console.log(response.data[0].rating);
 
-        //Create for loop to cycle through each result
-        for (let i = 0; i < response.data.length; i++) {
-            //Add the result rating
-            $("#giphySpace").prepend("<p>Rating is: "+ response.data[i].rating + "</p>");
-            //Add the image
-            $("#giphySpace").prepend("<img src='" + response.data[i].images.downsized.url + "'>");
-        }
+            //Create for loop to cycle through each result
+            for (let i = 0; i < response.data.length; i++) {
+                //Add the result rating
+                $("#giphySpace").prepend("<p>Rating is: " + response.data[i].rating + "</p>");
+                //Add the image
+                $("#giphySpace").prepend("<img src='" + response.data[i].images.downsized.url + "'>");
+            }
 
         });
     }
@@ -40,5 +41,4 @@ $(document).ready(function () {
     $(document).on("click", ".topicButtons", getGif);
 
 
-
-});
+    });
